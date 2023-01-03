@@ -3,8 +3,8 @@
 ### To check files
 ```
 git status
-git log
-git diff -> To check differences between most recents versions versus modification
+git log -> To check the history of all commits
+git diff -> To check differences between most recent commit versus modification
 ```
 
 ### To check remote
@@ -16,10 +16,11 @@ git remote -v
 ### To initialize a project
 ```
 git init
+git remote add origin https://github.com/example/Git-CheatSheet.git
 git add nameOfTheFile.py OR git add . OR git add --all (to add all files)
 git commit -m "messages"
-git remote add origin https://github.com/example/Git-CheatSheet.git
 ```
+
 ### To push a project
 ```
 git add nameOfTheFile.py OR git add . OR git add --all (to add all files)
