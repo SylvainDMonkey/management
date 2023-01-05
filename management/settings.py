@@ -21,11 +21,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-z-h!*_shg=15$roy-oj#(aqa18drqh)n=2p%(su)&guriolu%9')
+SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = str(os.environ.get('DEBUG')) == '1' #1 == True
 
+ENV_ALLOWED_HOST = os.environ.get('DJANGO_ALLOWED_HOST') or None
 ALLOWED_HOSTS = []
 if not DEBUG:
     ALLOWED_HOSTS += [os.environ.get('DJANGO_ALLOWED_HOSTS')]
@@ -58,7 +59,10 @@ LOGIN_URL = '/login/'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [r"\Users\user\Django_Projects\Coding_for_Entrepreneurs\management\templates"],
+        #'DIRS': [r"\Users\user\Django_Projects\Coding_for_Entrepreneurs\management\templates"],
+        'DIRS': [
+            BASE_DIR / "templates",          
+        ],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
