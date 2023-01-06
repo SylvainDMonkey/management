@@ -23,13 +23,23 @@ class Article(models.Model):
         super().save(*args, **kwargs)
         # obj.save()
         # do another something
+
+def slugify_instance_title(instance, save=False):
+    slug = slugify(instance.title)
+    qs = Article.objects.filter(slug=slug).exclude(id=instance.id)
+    if qs.exist():
+        slug = f"{slug}-{qs.count() + 1}"
+    instance.slug = slug
+    if save:
+        instance.save()
+    return instance
         
 def article_pre_save(sender, instance, *args, **kwargs):
     print('pre_save')
     print(args, kwargs)
     print(sender, instance)
     if instance.slug is None:
-        instance.slug = slugify(instance.title)
+        slugify_instance_title(instance, save=False)
 
 pre_save.connect(article_pre_save, sender=Article)
 
@@ -37,7 +47,6 @@ def article_post_save(sender, instance, created, *args, **kwargs):
     print('post_save')
     print(args, kwargs)
     if created:
-        instance.slug = slugify(instance.title)
-        instance.save()
+        slugify_instance_title(instance, save=True)
     
 post_save.connect(article_post_save, sender=Article)
