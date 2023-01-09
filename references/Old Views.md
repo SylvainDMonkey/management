@@ -1,4 +1,4 @@
-# Old version def article_search_view(request)
+# 1. Old version def article_search_view(request)
 ```
 #from django.db.models import Q
 def article_search_view(request):
@@ -26,7 +26,7 @@ def article_search_view(request):
     return render(request, 'articles/search.html', context=context)
 ```
 
-# Old version def article_create_view(request):
+# 2. Old version def article_create_view(request):
 ```
  @login_required
  def article_create_view(request):
@@ -44,4 +44,33 @@ def article_search_view(request):
              context['object'] = article_object
              context['created'] = True
      return render(request, "articles/create.html", context=context)
+```
+
+### 3. Data in original home view
+```
+from django.http import HttpResponse
+from articles.models import Article
+import random
+
+def home_view(request):
+    """
+    Take in a request 
+    Return HTML response
+    """
+    #Hard coded
+    name = "Sylvain"
+    #Pseudo random
+    random_id = random.randint(1, 3)
+    #From databases
+    article_obj = Article.objects.get(id=random_id)
+
+    context = {
+        "content": article_obj.content,
+        "id": article_obj.id,
+        "title": article_obj.title,
+    }
+    #Django Templates
+    HTML_STRING = """<h1>{title} {id}</h1>
+    <p>{content}</p>""".format(**context)
+    return HttpResponse(HTML_STRING)
 ```

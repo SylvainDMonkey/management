@@ -44,31 +44,11 @@ print(obj.id)
 a = Articles.objects.get(id=3)
 ```
 
-### 4. Data in original home view
+### 3. Data in User Class with
 ```
-from django.http import HttpResponse
 from articles.models import Article
-import random
-
-def home_view(request):
-    """
-    Take in a request 
-    Return HTML response
-    """
-    #Hard coded
-    name = "Sylvain"
-    #Pseudo random
-    random_id = random.randint(1, 3)
-    #From databases
-    article_obj = Article.objects.get(id=random_id)
-
-    context = {
-        "content": article_obj.content,
-        "id": article_obj.id,
-        "title": article_obj.title,
-    }
-    #Django Templates
-    HTML_STRING = """<h1>{title} {id}</h1>
-    <p>{content}</p>""".format(**context)
-    return HttpResponse(HTML_STRING)
+qs = Article.objects.filter(user__username='admin')
 ```
+or
+```
+qs = Article.objects.filter(user__username__icontains='admin')
