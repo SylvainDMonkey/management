@@ -10,3 +10,4 @@ tzdata==2022.2
 django-dotenv
 gunicorn
 psycopg2-binary
+pint

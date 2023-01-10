@@ -40,7 +40,7 @@ git checkout -b BranchName  #Create and move directly to the branch
 git branch -#To check we are on the good branch
 git fetch origin # fetch all changes
 git pull origin main # pull changes from the origin remote, master branch and merge them into my_branch
-git status #To check new or modifid files
+git status #To check new or modified files
 git add . #To add all your changes
 git commit -m "Your message" #To indicate what you were working on
 git push origin main #Push your branch to remote

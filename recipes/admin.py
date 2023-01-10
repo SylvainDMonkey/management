@@ -7,7 +7,7 @@ from .models import Recipe, RecipeIngredient
 User = get_user_model()
     
 class RecipeIngredientInline(admin.StackedInline):
-    #StackedInline has three fields by default; xtra allow to add a object by clicking on a + button
+    #StackedInline has three fields by default; extra allow to add a object by clicking on a + button
     model = RecipeIngredient
     extra = 0
     #fields = ["name", "description", "quantity", "unit", "directions"]
@@ -19,4 +19,3 @@ class RecipeAdmin(admin.ModelAdmin):
     raw_id_fields = ["user"]
 
 admin.site.register(Recipe,RecipeAdmin)
-
