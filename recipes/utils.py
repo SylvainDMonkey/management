@@ -1,8 +1,6 @@
 from fractions import Fraction
 
-import typing
-
-def number_str_to_float(amount_str:str) -> typing.Tuple(any, bool):
+def number_str_to_float(amount_str:str) -> (any, bool):
     """
     Take in an amount string to return float (if possible).
     

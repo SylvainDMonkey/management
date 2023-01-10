@@ -10,7 +10,7 @@ class RecipeIngredientInline(admin.StackedInline):
     #StackedInline has three fields by default; extra allow to add a object by clicking on a + button
     model = RecipeIngredient
     extra = 0
-    readonly_fields = ['quantity_as_float']
+    readonly_fields = ['quantity_as_float', 'as_mks', 'as_imperial', 'to_grams']
     #fields = ["name", "description", "quantity", "unit", "directions"]
 
 class RecipeAdmin(admin.ModelAdmin):
