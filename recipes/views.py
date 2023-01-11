@@ -11,12 +11,14 @@ def recipe_list_view(request):
     context = {
         "object_list": qs
     }
+    print(qs)
     return render(request, "recipes/list.html", context)
 
 
 @login_required
 def recipe_detail_view(request, id=None):
-    obj = get_object_or_404(Recipe, id=id, user=request.user) 
+    obj = get_object_or_404(Recipe, id=id, user=request.user)
+    print(obj)
     context = {
         "object": obj
     }
