@@ -74,3 +74,53 @@ def home_view(request):
     <p>{content}</p>""".format(**context)
     return HttpResponse(HTML_STRING)
 ```
+
+
+# 4. Update view :
+```
+@login_required
+def recipe_update_view(request, id=None):
+    obj = get_object_or_404(Recipe, id=id, user=request.user)
+    form = RecipeForm(request.POST or None, instance=obj)
+    form_2 = RecipeIngredientForm(request.POST or None)
+    context = {
+        "form": form,
+        "form_2": form_2,
+        "object": obj
+    }
+    if all([form.is_valid(), form_2.is_valid()]):
+        parent = form.save(commit=False)
+        parent.save()
+        child = form_2.save(commit=False)
+        child.recipe = parent #If not indicated an error message shows up with NOT NULL constraint failed
+        child.save()
+        context['message'] = 'Data saved.'
+    return render(request, "recipes/create-update.html", context)
+```
+@login_required
+def recipe_update_view(request, id=None):
+    obj = get_object_or_404(Recipe, id=id, user=request.user)
+    form = RecipeForm(request.POST or None, instance=obj)
+    form_2 = RecipeIngredientForm(request.POST or None)
+    #obj.recipeingredient_set.all()
+    ingredient_forms = []
+    for ingredient_obj in obj.recipeingredient_set.all():
+        ingredient_forms.append(
+            RecipeIngredientForm(request.POST or None, instance=ingredient_obj)
+        )
+    context = {
+        "form": form,
+        "ingredient_forms": ingredient_forms,
+        "object": obj
+    }
+    my_forms = all([form.is_valid() for form in ingredient_forms])
+    if my_forms and form.is_valid():
+        parent = form.save(commit=False)
+        parent.save()
+        for form_2 in ingredient_forms:
+            child = form_2.save(commit=False)
+            child.recipe = parent #If not indicated an error message shows up with NOT NULL constraint failed
+            child.save()
+        context['message'] = 'Data saved.'
+    return render(request, "recipes/create-update.html", context) 
+```

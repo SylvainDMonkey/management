@@ -43,7 +43,7 @@ git pull origin main # pull changes from the origin remote, master branch and me
 git status #To check new or modified files
 git add . #To add all your changes
 git commit -m "Your message" #To indicate what you were working on
-git push origin main #Push your branch to remote
+git push -u origin BranchName #Push your branch to remote
 git checkout main #Change branch to main
 git merge Branchname -m "your message" #Merge your branch on main
 ```

@@ -1,3 +1,5 @@
+# 1. Create-update view
+```
 {% extends 'base.html' %}
 
 {% block content %}
@@ -9,11 +11,12 @@
       {% csrf_token %}
       {{ form.as_p }}
 
-      {% if formset %}
+      {% if form_2 %}
         <h3>Ingredients</h3>
-        {{ formset.as_p }}
+        {{ form_2.as_p }}
       {% endif %}
       <button type="submit">Save</button>
     </form>
   </div>
 {% endblock %}
+```
