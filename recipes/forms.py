@@ -7,7 +7,7 @@ class RecipeForm(forms.ModelForm):
     error_css_class = 'error-field'
     required_css_class = 'required-field'
     # To add css
-    # name = forms.CharField(label='', widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Recipe name"}))
+    # name = forms.CharField(label='', widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Recipe name"}, help_text="This is your help text!"))
     # description = forms.CharField(widget=forms.Textarea(attrs={"rows": 3}))
     class Meta:
         model = Recipe
@@ -19,7 +19,7 @@ class RecipeForm(forms.ModelForm):
             #print(field)
             new_data = {
                 "placeholder": f"Recipe {str(field)}",
-                "class": 'form-control'
+                "class": 'form-control',
             }
             self.fields[str(field)].widget.attrs.update(
                 new_data
