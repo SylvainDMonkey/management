@@ -5,6 +5,7 @@
   <p>{{ object.content }}</p>
 
   <a href="{% url 'articles:create' %}">Create Article</a>
+  <a href="{% url 'recipes:list' %}">Recipes List</a>
   <ul>
     {% for obj in object_list %}
       <li>

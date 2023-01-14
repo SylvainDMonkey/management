@@ -24,7 +24,7 @@ class RecipeForm(forms.ModelForm):
             self.fields[str(field)].widget.attrs.update(
                 new_data
             )
-        #self.fields['name'].label = ''
+        # self.fields['name'].label = ''
         # self.fields['name'].widget.attrs.update({"class": "form-control", "placeholder": "Recipe name"})
         self.fields['description'].widget.attrs.update({"rows": 2})
         self.fields['directions'].widget.attrs.update({"rows": 4})

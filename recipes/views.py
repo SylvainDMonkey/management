@@ -53,13 +53,15 @@ def recipe_update_view(request, id=None):
         "formset": formset,
         "object": obj
     }
-    if [form.is_valid(), formset.is_valid()]:
+    if request.method == "POST":
+        print(request.POST)
+    if all([form.is_valid(), formset.is_valid()]):
         parent = form.save(commit=False)
         parent.save()
         for form in formset:
+            #if not hasattr(child, 'recipe'):
             child = form.save(commit=False)
-            if not hasattr(child, 'recipe'):
-                child.recipe = parent #If not indicated an error message shows up with NOT NULL constraint failed
+            child.recipe = parent #If not indicated an error message shows up with NOT NULL constraint failed
             child.save()
         context['message'] = 'Data saved.'
     return render(request, "recipes/create-update.html", context)  
