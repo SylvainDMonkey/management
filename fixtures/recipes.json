@@ -1,0 +1,185 @@
+[
+{
+    "model": "recipes.recipe",
+    "pk": 1,
+    "fields": {
+        "user": 1,
+        "name": "Chicken Pasta",
+        "description": "Italian Pasta with well fed chicken",
+        "directions": "Here is my directions",
+        "timestamp": "2023-01-09T08:03:33.753Z",
+        "updated": "2023-01-14T09:35:26.934Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipe",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "name": "Onion Ring Mayo",
+        "description": "Onion Ring with delicious mayonnaise",
+        "directions": "This is my direction",
+        "timestamp": "2023-01-11T23:03:32.813Z",
+        "updated": "2023-01-14T09:12:34.215Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipe",
+    "pk": 3,
+    "fields": {
+        "user": 1,
+        "name": "Pasta HTMX",
+        "description": "HTMX Description",
+        "directions": "HTMXDirections",
+        "timestamp": "2023-01-14T09:04:53.068Z",
+        "updated": "2023-01-14T09:22:18.264Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 1,
+    "fields": {
+        "recipe": 1,
+        "name": "Grilled Chicken",
+        "description": "",
+        "quantity": "0.5",
+        "quantity_as_float": 0.5,
+        "unit": "ounce",
+        "directions": "",
+        "timestamp": "2023-01-09T08:19:16.359Z",
+        "updated": "2023-01-14T09:35:26.937Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 2,
+    "fields": {
+        "recipe": 1,
+        "name": "Salada",
+        "description": null,
+        "quantity": "0.3",
+        "quantity_as_float": 0.3,
+        "unit": "pounds",
+        "directions": null,
+        "timestamp": "2023-01-12T00:10:38.368Z",
+        "updated": "2023-01-14T09:35:26.944Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 3,
+    "fields": {
+        "recipe": 2,
+        "name": "Onion",
+        "description": null,
+        "quantity": "1",
+        "quantity_as_float": 1.0,
+        "unit": "pound",
+        "directions": null,
+        "timestamp": "2023-01-14T00:26:45.999Z",
+        "updated": "2023-01-14T09:12:34.225Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 4,
+    "fields": {
+        "recipe": 2,
+        "name": "Oil",
+        "description": null,
+        "quantity": "1",
+        "quantity_as_float": 1.0,
+        "unit": "liter",
+        "directions": null,
+        "timestamp": "2023-01-14T00:26:46.006Z",
+        "updated": "2023-01-14T09:12:34.225Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 5,
+    "fields": {
+        "recipe": 2,
+        "name": "BBQ Sauce",
+        "description": null,
+        "quantity": "1",
+        "quantity_as_float": 1.0,
+        "unit": "ounce",
+        "directions": null,
+        "timestamp": "2023-01-14T00:28:48.865Z",
+        "updated": "2023-01-14T09:12:34.235Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 6,
+    "fields": {
+        "recipe": 2,
+        "name": "Panko",
+        "description": null,
+        "quantity": "05",
+        "quantity_as_float": 5.0,
+        "unit": "ounce",
+        "directions": null,
+        "timestamp": "2023-01-14T00:28:48.875Z",
+        "updated": "2023-01-14T09:12:34.235Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 7,
+    "fields": {
+        "recipe": 2,
+        "name": "Creamy Sauce",
+        "description": null,
+        "quantity": "1",
+        "quantity_as_float": 1.0,
+        "unit": "ounce",
+        "directions": null,
+        "timestamp": "2023-01-14T00:30:30.507Z",
+        "updated": "2023-01-14T09:12:34.235Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 8,
+    "fields": {
+        "recipe": 3,
+        "name": "Penne Rigate",
+        "description": null,
+        "quantity": "200",
+        "quantity_as_float": 200.0,
+        "unit": "ounces",
+        "directions": null,
+        "timestamp": "2023-01-14T09:05:44.611Z",
+        "updated": "2023-01-14T09:22:18.264Z",
+        "active": true
+    }
+},
+{
+    "model": "recipes.recipeingredient",
+    "pk": 9,
+    "fields": {
+        "recipe": 1,
+        "name": "Penne Rigatte",
+        "description": null,
+        "quantity": "200",
+        "quantity_as_float": 200.0,
+        "unit": "ounce",
+        "directions": null,
+        "timestamp": "2023-01-14T09:35:26.944Z",
+        "updated": "2023-01-14T09:35:26.944Z",
+        "active": true
+    }
+}
+]

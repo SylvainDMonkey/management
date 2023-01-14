@@ -46,7 +46,7 @@ def article_search_view(request):
      return render(request, "articles/create.html", context=context)
 ```
 
-### 3. Data in original home view
+### 3. Old version home_view
 ```
 from django.http import HttpResponse
 from articles.models import Article
@@ -76,7 +76,7 @@ def home_view(request):
 ```
 
 
-# 4. Update view :
+# 4. Old version Update view :
 ```
 @login_required
 def recipe_update_view(request, id=None):
@@ -96,6 +96,7 @@ def recipe_update_view(request, id=None):
         child.save()
         context['message'] = 'Data saved.'
     return render(request, "recipes/create-update.html", context)
+```
 ```
 @login_required
 def recipe_update_view(request, id=None):
@@ -123,4 +124,16 @@ def recipe_update_view(request, id=None):
             child.save()
         context['message'] = 'Data saved.'
     return render(request, "recipes/create-update.html", context) 
+```
+
+# Old version recipe_detail_view
+```
+@login_required
+def recipe_detail_view(request, id=None):
+    obj = get_object_or_404(Recipe, id=id, user=request.user)
+    print(obj)
+    context = {
+        "object": obj
+    }
+    return render(request, "recipes/detail.html", context)
 ```

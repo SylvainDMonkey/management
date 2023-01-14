@@ -1,21 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  {% comment %} <h2>{{ object.name }} <small><a href="{% url 'recipes:update' object.id %}">Edit</a></small></h2> {% endcomment %}
-  <h2>{{ object.name }}
-    {% if object.get_edit_url %}
-    <small>
-        <a href="{{ object.get_edit_url }}">Edit</a>
-    </small>
-    {% endif %}
-  </h2>
-  <p>{{ object.description }}</p>
-  <p>{{ object.directions }}</p>
-
-  {% comment %} {% for ingredient in object.recipeingredient_set.all %} {% endcomment %}
-  {% for ingredient in object.get_ingredients_children %}
-    <h2>{{ ingredient.name }}</h2>
-    <p>{{ ingredient.as_imperial }}</p>
-    <p>{{ ingredient.as_mks }}</p>
-  {% endfor %}
+<div hx-get ='{{ hx_url }}' hx-trigger='revealed'>
+  <div class="htmx-indicator">Loading...</div>
+</div>
 {% endblock %}
