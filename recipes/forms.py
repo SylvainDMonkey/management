@@ -9,6 +9,7 @@ class RecipeForm(forms.ModelForm):
     # To add css
     # name = forms.CharField(label='', widget=forms.TextInput(attrs={"class": "form-control", "placeholder": "Recipe name"}, help_text="This is your help text!"))
     # description = forms.CharField(widget=forms.Textarea(attrs={"rows": 3}))
+    name = forms.CharField(help_text='This is your help! <a href="/contact">Contact us</a>')
     class Meta:
         model = Recipe
         fields = ['name', 'description', 'directions']

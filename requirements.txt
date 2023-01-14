@@ -8,6 +8,7 @@ sqlparse==0.4.2
 toml==0.10.2
 tzdata==2022.2
 django-dotenv
+django-htmx
 gunicorn
 psycopg2-binary
 pint

@@ -64,4 +64,7 @@ def recipe_update_view(request, id=None):
             child.recipe = parent #If not indicated an error message shows up with NOT NULL constraint failed
             child.save()
         context['message'] = 'Data saved.'
+    if request.htmx:
+        print(request.htmx)
+        return render(request, "recipes/partials/forms.html", context)
     return render(request, "recipes/create-update.html", context)  
