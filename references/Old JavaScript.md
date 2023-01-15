@@ -1,31 +1,13 @@
-{% extends 'base.html' %}
-
-{% block content %}
-  <style>
-    .ingredient-form {
-      border-bottom: 1px solid black;
-    }
-    .hidden {
-      display: none;
-    }
-  </style>
-
-  <div style="margin-top:30px;">
-    {% include 'recipes/partials/forms.html' %}
-  </div>
-
-  <script>
-    document.addEventListener('click', (event) => {
-      //console.log(event.target, event.target.id)
-      if (event.target.id == 'add-more') {
-        add_new_form(event)
-      }
-    })
+# 1. Old version scripts without htmx (couldn't dynamiccaly add more items after save)
+```
+<script>
+    const addMoreBtn = document.getElementById('add-more')
+    const totalNewForms = document.getElementById('id_form-TOTAL_FORMS')
+    addMoreBtn.addEventListener('click', add_new_form)
     function add_new_form(event) {
       if (event) {
         event.preventDefault()
       }
-      const totalNewForms = document.getElementById('id_form-TOTAL_FORMS')
       const currentIngredientForms = document.getElementsByClassName('ingredient-form')
       const currentFormCount = currentIngredientForms.length //+ 1
       const formCopyTarget = document.getElementById('ingredient-form-list')
@@ -39,4 +21,4 @@
       formCopyTarget.append(copyEmptyFormEl)
     }
   </script>
-{% endblock %}
+  ```
