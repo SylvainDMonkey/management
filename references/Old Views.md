@@ -26,7 +26,7 @@ def article_search_view(request):
     return render(request, 'articles/search.html', context=context)
 ```
 
-# 2. Old version def article_create_view(request):
+# 2. Old version article_create_view(request):
 ```
  @login_required
  def article_create_view(request):
@@ -76,7 +76,7 @@ def home_view(request):
 ```
 
 
-# 4. Old version Update view :
+# 4. Old version recipe_update_view :
 ```
 @login_required
 def recipe_update_view(request, id=None):
@@ -125,8 +125,36 @@ def recipe_update_view(request, id=None):
         context['message'] = 'Data saved.'
     return render(request, "recipes/create-update.html", context) 
 ```
+def recipe_update_view(request, id=None):
+    obj = get_object_or_404(Recipe, id=id, user=request.user)
+    form = RecipeForm(request.POST or None, instance=obj)
+    #Formset = modelformset_factory(Model, form=ModelForm, extra=0)
+    RecipeIngredientFormset = modelformset_factory(RecipeIngredient, form=RecipeIngredientForm, extra=0)
+    qs = obj.recipeingredient_set.all()
+    formset  =RecipeIngredientFormset(request.POST or None, queryset=qs)
+    context = {
+        "form": form,
+        "formset": formset,
+        "object": obj
+    }
+    if request.method == "POST":
+        print(request.POST)
+    if all([form.is_valid(), formset.is_valid()]):
+        parent = form.save(commit=False)
+        parent.save()
+        for form in formset:
+            #if not hasattr(child, 'recipe'):
+            child = form.save(commit=False)
+            child.recipe = parent #If not indicated an error message shows up with NOT NULL constraint failed
+            child.save()
+        context['message'] = 'Data saved.'
+    if request.htmx:
+        print(request.htmx)
+        return render(request, "recipes/partials/forms.html", context)
+    return render(request, "recipes/create-update.html", context)
 
-# Old version recipe_detail_view
+
+# 5. Old version recipe_detail_view
 ```
 @login_required
 def recipe_detail_view(request, id=None):
