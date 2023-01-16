@@ -32,7 +32,7 @@ def recipe_detail_hx_view(request, id=None):
     if not request.htmx:
         raise Http404
     try:
-        parent_obj = Recipe.objects.get(id=id, user=request.user)
+        obj = Recipe.objects.get(id=id, user=request.user)
     except:
         obj = None
     if obj is None:
@@ -54,6 +54,11 @@ def recipe_create_view(request):
         obj = form.save(commit=False)
         obj.user = request.user
         obj.save()
+        if request.htmx:
+            headers = {
+                "HX-Redirect": obj.get_absolute_url()
+            }
+            return HttpResponse("Created", headers=headers)
         return redirect(obj.get_absolute_url())
     return render(request, "recipes/create-update.html", context)  
 
