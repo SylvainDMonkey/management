@@ -1,5 +1,9 @@
 # Django commands
 
+# Activate / Deactivate
+venv\Scripts\activate.bat
+venv\Scripts\deactivate.bat
+
 # 1.Vérifier la version de Django :
 python -m django --version
 
