@@ -47,3 +47,7 @@ git push -u origin BranchName #Push your branch to remote
 git checkout main #Change branch to main
 git merge Branchname -m "your message" #Merge your branch on main
 ```
+### To modify branch name
+```
+git branch -m oldname newname
+```
