@@ -156,8 +156,18 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    BASE_DIR / "static", # ou os.path.join(BASE_DIR, 'static') dans STATIC_ROOT
+]
+
+STATIC_ROOT = BASE_DIR / "staticfiles-cdn" #in production we want cdn
+#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+
+#To allow CSS to work else I have an error "Refused to apply style from 'http://127.0.0.1:8000/pantry/recipes/2/edit/static/recipes/recipes-htmx.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled."
+# import mimetypes
+# mimetypes.add_type("text/css", ".css", True)
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
