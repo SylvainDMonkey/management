@@ -163,11 +163,10 @@ STATICFILES_DIRS = [
 ]
 
 STATIC_ROOT = BASE_DIR / "staticfiles-cdn" #in production we want cdn
-#STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-#To allow CSS to work else I have an error "Refused to apply style from 'http://127.0.0.1:8000/pantry/recipes/2/edit/static/recipes/recipes-htmx.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled."
-# import mimetypes
-# mimetypes.add_type("text/css", ".css", True)
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media') # ou os.path.join(BASE_DIR, 'media') dans MEDIA_ROOT
+MEDIA_URL = '/media/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

@@ -12,3 +12,4 @@ django-htmx
 gunicorn
 psycopg2-binary
 pint
+pillow

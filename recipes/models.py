@@ -6,7 +6,9 @@ from django.urls import reverse
 from .utils import number_str_to_float
 from .validators import validate_unit_of_measure
 
+import pathlib
 import pint
+import uuid
 
 # Create your models here.
 
@@ -57,7 +59,15 @@ class Recipe(models.Model):
     
     def get_ingredients_children(self):
         return self.recipeingredient_set.all()
-    
+
+def recipe_ingredient_image_upload_handler(instance, filename):
+    fpath = pathlib.Path(filename)
+    new_fname = str(uuid.uuid1()) #Add an ID to each file with a timestamp(uuid1)
+    return f"recipes/ingredient/{new_fname}{fpath.suffix}" #like .png .jpg
+
+class RecipeIngredientImage(models.Model):
+    recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
+    image = models.ImageField(upload_to="recipes/")
     
 class RecipeIngredient(models.Model):
     recipe = models.ForeignKey(Recipe, on_delete=models.CASCADE)
@@ -117,7 +127,3 @@ class RecipeIngredient(models.Model):
         else:
             self.quantity_as_float = None
         super().save(*args, **kwargs)
-        
-
-# class RecipeImage():
-#     recipe = models.ForeignKey(Recipe)
