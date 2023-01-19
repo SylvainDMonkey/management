@@ -4,7 +4,7 @@ from django.http import HttpResponse, Http404
 from django.shortcuts import redirect, render, get_object_or_404
 from django.urls import reverse
 
-from .forms import RecipeForm, RecipeIngredientForm
+from .forms import RecipeForm, RecipeIngredientForm, RecipeIngredientImageForm
 from .models import Recipe, RecipeIngredient
 # CRUD -> Create Retrieve Update & Delete
 
@@ -163,4 +163,24 @@ def recipe_ingredient_update_hx_view(request, parent_id=None, id=None):
         new_obj.save()
         context['object'] = new_obj
         return render(request, "recipes/partials/ingredient-inline.html", context) 
-    return render(request, "recipes/partials/ingredient-form.html", context) 
+    return render(request, "recipes/partials/ingredient-form.html", context)
+
+
+def recipe_ingredient_image_upload_view(request, parent_id=None):
+    #print(request.FILES.get("image"))
+    try:
+        parent_obj = Recipe.objects.get(id=parent_id, user=request.user)
+    except:
+        parent_obj = None
+    if parent_obj is None:
+        return Http404
+    form = RecipeIngredientImageForm(request.POST or None, request.FILES or None)
+    if form.is_valid():
+        obj = form.save(commit=False)
+        #obj.recipe_id = parent_id
+        obj.recipe = parent_id
+        obj.save()
+    context = {
+        "form": form
+    }
+    return render(request, "image-form.html", context)
