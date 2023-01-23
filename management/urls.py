@@ -25,6 +25,7 @@ from accounts.views import (
 )
 
 from .views import home_view
+from meals.views import meal_queue_toggle_view
 from search.views import search_view
 
 urlpatterns = [
@@ -38,6 +39,8 @@ urlpatterns = [
     path('register/', register_view),
     #Articles
     path('articles/', include('articles.urls')),
+    #Meals
+    path('meal-toggle/<int:recipe_id>', meal_queue_toggle_view, name='meal-toggle'),
     #Recipes
     path('pantry/recipes/', include('recipes.urls')),
     #Search
