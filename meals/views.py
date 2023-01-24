@@ -4,7 +4,6 @@ from django.shortcuts import render
 from recipes.models import Recipe
 from .models import Meal
 
-
 def meal_queue_toggle_view(request, recipe_id=None):
     if not request.htmx:
         return HttpResponseBadRequest()
@@ -14,7 +13,7 @@ def meal_queue_toggle_view(request, recipe_id=None):
         return HttpResponse("Must be logged in", status=400)
     user_id = user.id
     if user_id is None:
-        return
+        return 
     if request.method == "POST":
         is_valid_recipe = False
         try:
@@ -27,7 +26,7 @@ def meal_queue_toggle_view(request, recipe_id=None):
     is_pending = Meal.objects.by_user_id(user_id).in_queue(recipe_id)
     toggle_label = "Add to meals" if not is_pending else "Remove from meals"
     context = {
-        'recipe_id': recipe_id,
+        'recipe_id': recipe_id, 
         'toggle_label': toggle_label,
         'is_pending': is_pending
     }
